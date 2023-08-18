@@ -184,6 +184,7 @@ data "aws_iam_policy_document" "read" {
     ]
     resources = [
       "arn:aws:ssm:eu-central-1:${data.aws_caller_identity.current.account_id}:parameter/NewRelicLicenseKey",
+      "arn:aws:ssm:eu-central-1:${data.aws_caller_identity.current.account_id}:parameter/NewRelicApiKey",
     ]
   }
 }
