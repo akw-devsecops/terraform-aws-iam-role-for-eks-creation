@@ -132,6 +132,17 @@ data "aws_iam_policy_document" "manage" {
   }
 
   statement {
+    sid    = "ECR"
+    effect = "Allow"
+    actions = [
+      "ecr:*",
+    ]
+    resources = [
+      "*"
+    ]
+  }
+
+  statement {
     sid    = "KMS"
     effect = "Allow"
     actions = [
