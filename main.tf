@@ -152,6 +152,17 @@ data "aws_iam_policy_document" "manage" {
       "*"
     ]
   }
+
+  statement {
+    sid    = "AutoScaling"
+    effect = "Allow"
+    actions = [
+      "autoscaling:*",
+    ]
+    resources = [
+      "*"
+    ]
+  }
 }
 
 resource "aws_iam_policy" "read" {
