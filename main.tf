@@ -47,7 +47,7 @@ data "aws_iam_policy_document" "manage" {
       "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
       "ec2:UpdateSecurityGroupRuleDescriptionsIngress",
     ]
-    resources = [
+    resources = concat([
       "arn:aws:ec2:eu-central-1::image/*",
       "arn:aws:ec2:eu-central-1:${data.aws_caller_identity.current.account_id}:elastic-ip/*",
       "arn:aws:ec2:eu-central-1:${data.aws_caller_identity.current.account_id}:launch-template/*",
@@ -57,7 +57,13 @@ data "aws_iam_policy_document" "manage" {
       "arn:aws:ec2:eu-central-1:${data.aws_caller_identity.current.account_id}:subnet/*",
       "arn:aws:ec2:eu-central-1:${data.aws_caller_identity.current.account_id}:volume/*",
       "arn:aws:ec2:eu-central-1:${data.aws_caller_identity.current.account_id}:vpc/${var.vpc_id}",
-    ]
+      ],
+      [
+        for vpc in var.addtional_vpc_ids :
+          "arn:aws:ec2:eu-central-1:${data.aws_caller_identity.current.account_id}:vpc/${vpc}"
+      ]
+
+    )
   }
 
   statement {
