@@ -38,6 +38,7 @@ No requirements.
 | <a name="input_state_bucket_arn"></a> [state\_bucket\_arn](#input\_state\_bucket\_arn) | ARN of the S3 state bucket to that will be used | `string` | n/a | yes |
 | <a name="input_trusted_role_arns"></a> [trusted\_role\_arns](#input\_trusted\_role\_arns) | ARNs of AWS entities who can assume these roles | `list(string)` | n/a | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | ID of the VPC where the cluster and its nodes will be provisioned | `string` | n/a | yes |
+| <a name="input_addtional_vpc_ids"></a> [addtional\_vpc\_ids](#input\_addtional\_vpc\_ids) | List of additional VPC IDs to be used for the cluster | `list(string)` | `[]` | no |
 
 ## Outputs
 
