@@ -84,6 +84,23 @@ data "aws_iam_policy_document" "manage" {
   }
 
   statement {
+    sid    = "IAMPassRole"
+    effect = "Allow"
+    actions = [
+      "iam:PassRole"
+    ]
+    resources = [
+      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS",
+      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/aws-service-role/eks-nodegroup.amazonaws.com/AWSServiceRoleForAmazonEKSNodegroup"
+    ]
+    condition {
+      test     = "StringEquals"
+      variable = "iam:PassedToService"
+      values   = ["eks.amazonaws.com"]
+    }
+  }
+
+  statement {
     sid    = "IAM"
     effect = "Allow"
     actions = [
@@ -112,7 +129,6 @@ data "aws_iam_policy_document" "manage" {
       "iam:ListRolePolicies",
       "iam:ListRoleTags",
       "iam:ListRoles",
-      "iam:PassRole",
       "iam:PutRolePolicy",
       "iam:TagOpenIDConnectProvider",
       "iam:TagPolicy",
