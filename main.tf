@@ -90,8 +90,7 @@ data "aws_iam_policy_document" "manage" {
       "iam:PassRole"
     ]
     resources = [
-      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/aws-service-role/eks.amazonaws.com/AWSServiceRoleForAmazonEKS",
-      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/aws-service-role/eks-nodegroup.amazonaws.com/AWSServiceRoleForAmazonEKSNodegroup"
+      "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/*"
     ]
     condition {
       test     = "StringEquals"
