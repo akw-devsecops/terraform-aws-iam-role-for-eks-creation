@@ -76,6 +76,7 @@ data "aws_iam_policy_document" "manage" {
       "logs:ListTagsForResource",
       "logs:PutRetentionPolicy",
       "logs:TagLogGroup",
+      "logs:TagResource",
     ]
     resources = [
       "arn:aws:logs:eu-central-1:${data.aws_caller_identity.current.account_id}:log-group:/aws/eks/*/cluster",
